@@ -1,4 +1,13 @@
 .App {
+  margin: 1em;
+}
+.YearCell {
+  text-align: center;
+}
+th {
+  text-align: left;
+}
+.THCell {
   text-align: center;
 }
 
@@ -50,7 +59,7 @@ table.customTable td, table.customTable th {
   border-width: 2px;
   border-color: #7ea8f8;
   border-style: solid;
-  padding: 5px;
+  padding: 0.4em;
 }
 
 table.customTable thead {

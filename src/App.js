@@ -11,14 +11,14 @@ function App() {
   if (error) return "An error has occurred.";
   if (!data) return "Loading...";
   return (
-    <div>
+    <div className="App">
       <h1>SWR Sandbox</h1>
       <p>Experiments with the React framework <a href="https://swr.vercel.app/">swr</a>.</p>
       <table className="customTable">
         <thead>
           <tr>
             <th>Title</th>
-            <th>Year</th>
+            <th className="THCell">Year</th>
             <th>Lead Studio</th>
           </tr>
         </thead>
@@ -28,7 +28,7 @@ function App() {
             <td>
               {item.film}
             </td>
-            <td>
+            <td className="YearCell">
               {item.year}
             </td>
             <td>
