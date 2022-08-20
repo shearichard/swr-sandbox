@@ -64,9 +64,6 @@ function App() {
     <div className="App">
       <h1>SWR Sandbox</h1>
       <p>Experiments with the React framework <a href="https://swr.vercel.app/">swr</a>.</p>
-      <button onClick={() => {setSortArgument("film")}}>Name</button>
-      <button onClick={() => {setSortArgument("year")}}>Year</button>
-      <button onClick={() => {setSortArgument("lead_studio")}}>Studio</button>
       <table className="customTable">
         <thead>
           <tr>
