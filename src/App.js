@@ -17,18 +17,43 @@ function SortArrows(props) {
 
 function App() {
 
-  const [sortKey, setSortKey] = useState("film")
+  const [sortArgument, setSortArgument] = useState("film,id")
   const [sortOrder, setSortOrder] = useState("UP")
+  const [sortKey, setSortKey] = useState("film")
 
   useEffect(() => {
+      console.log(`Z : ${sortArgument} . sortKey : ${sortKey} .`)
       if (sortOrder === "UP"){
-          setSortKey(`film,id`)
+          setSortArgument(`${sortKey},id`)
       }else{
-          setSortKey(`-film,id`)
+          setSortArgument(`-${sortKey},id`)
       }
   }, [sortOrder]); 
 
-  const toggleSort = () => {
+  const toggleSortFilm = () => {
+      setSortKey('film')
+      if (sortOrder === "UP")
+      {
+        setSortOrder("DOWN")
+      }
+      else
+      {
+        setSortOrder("UP")
+      }
+  }
+  const toggleSortStudio = () => {
+      setSortKey('lead_studio')
+      if (sortOrder === "UP")
+      {
+        setSortOrder("DOWN")
+      }
+      else
+      {
+        setSortOrder("UP")
+      }
+  }
+  const toggleSortYear = () => {
+      setSortKey('year')
       if (sortOrder === "UP")
       {
         setSortOrder("DOWN")
@@ -39,7 +64,7 @@ function App() {
       }
   }
 
-  const { data, error } = useSWR(`http://localhost:8000/movies/?ordering=${sortKey}`, fetcher);
+  const { data, error } = useSWR(`http://localhost:8000/movies/?ordering=${sortArgument}`, fetcher);
 
   if (error) return "An error has occurred.";
   if (!data) return "Loading...";
@@ -48,19 +73,27 @@ function App() {
     <div className="App">
       <h1>SWR Sandbox</h1>
       <p>Experiments with the React framework <a href="https://swr.vercel.app/">swr</a>.</p>
-      <button onClick={() => {setSortKey("film")}}>Name</button>
-      <button onClick={() => {setSortKey("year")}}>Year</button>
-      <button onClick={() => {setSortKey("lead_studio")}}>Studio</button>
+      <button onClick={() => {setSortArgument("film")}}>Name</button>
+      <button onClick={() => {setSortArgument("year")}}>Year</button>
+      <button onClick={() => {setSortArgument("lead_studio")}}>Studio</button>
       <table className="customTable">
         <thead>
           <tr>
             <th>
                 Title
                 &nbsp;
-                <SortArrows toggleSort={toggleSort}  />
+                <SortArrows toggleSort={toggleSortFilm}  />
             </th>
-            <th className="THCell">Year</th>
-            <th>Lead Studio</th>
+            <th className="THCell">
+                Year
+                &nbsp;
+                <SortArrows toggleSort={toggleSortYear}  />
+            </th>
+            <th>
+                Lead Studio
+                &nbsp;
+                <SortArrows toggleSort={toggleSortStudio}  />
+            </th>
           </tr>
         </thead>
         <tbody>
