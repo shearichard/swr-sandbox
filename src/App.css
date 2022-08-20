@@ -10,6 +10,10 @@ th {
 .THCell {
   text-align: center;
 }
+svg:hover {
+      fill: white;
+}
+
 
 .App-logo {
   height: 40vmin;
