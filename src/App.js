@@ -29,46 +29,37 @@ function App() {
           setSortArgument(`-${sortKey},id`)
       }
   }, [sortOrder]); 
-
+  //
+  const toggleSortInner = () => {
+      if (sortOrder === "UP")
+      {
+        setSortOrder("DOWN")
+      }
+      else
+      {
+        setSortOrder("UP")
+      }
+  }
+  //
   const toggleSortFilm = () => {
       setSortKey('film')
-      if (sortOrder === "UP")
-      {
-        setSortOrder("DOWN")
-      }
-      else
-      {
-        setSortOrder("UP")
-      }
+      toggleSortInner()
   }
+  //
   const toggleSortStudio = () => {
       setSortKey('lead_studio')
-      if (sortOrder === "UP")
-      {
-        setSortOrder("DOWN")
-      }
-      else
-      {
-        setSortOrder("UP")
-      }
+      toggleSortInner()
   }
+  //
   const toggleSortYear = () => {
       setSortKey('year')
-      if (sortOrder === "UP")
-      {
-        setSortOrder("DOWN")
-      }
-      else
-      {
-        setSortOrder("UP")
-      }
+      toggleSortInner()
   }
-
+  //
   const { data, error } = useSWR(`http://localhost:8000/movies/?ordering=${sortArgument}`, fetcher);
-
   if (error) return "An error has occurred.";
   if (!data) return "Loading...";
-
+  //
   return (
     <div className="App">
       <h1>SWR Sandbox</h1>
